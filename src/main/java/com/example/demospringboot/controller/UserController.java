@@ -57,6 +57,6 @@ public class UserController {
             return new ApiResponse<>(404, "User not found", null);
         }
         userDatabase.remove(id);
-        return new ApiResponse<>(200, "User deleted successfully", user.getName());
+        return new ApiResponse<>(200, "User deleted successfully with", user.getName());
     }
 }
