@@ -10,7 +10,7 @@ import lombok.Setter;
 @Table(name = "users")
 public class User {
 
-    @Id  // Marks this field as the primary key
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
