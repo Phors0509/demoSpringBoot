@@ -1,54 +1,18 @@
 package com.example.demospringboot.service;
-
 import com.example.demospringboot.model.User;
-import com.example.demospringboot.repository.UserRepository;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
-public class UserService {
+public interface UserService {
 
-    private final UserRepository userRepository;
+    User createUser(User user);
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    List<User> getAllUsers();
 
-    public User createUser(User user){
-        return userRepository.save(user);
-    }
+    User getUserById(int id);
 
-    public List<User> getAllUsers() {
-        return userRepository.findAllByDeletedFalse();
-    }
+    User updateUser(int id, User user);
 
-    public User getUserById(int id){
-        User user = userRepository.findById(id).orElse(null);
-        if (user == null || user.isDeleted()){
-            return null;
-        }
-        return user;
-    }
-
-    public User updateUser(int id, User user){
-        User existingUser = userRepository.findById(id).orElse(null);
-        if (existingUser == null){
-            return null;
-        }
-        existingUser.setDeleted(true);
-        userRepository.save(existingUser);
-        user.setId(0);
-        return userRepository.save(user);
-    }
-
-    public void deleteUser(int id){
-        User existingUser = userRepository.findById(id).orElse(null);
-        if (existingUser == null){
-            return;
-        }
-        existingUser.setDeleted(true);
-        userRepository.save(existingUser);
-    }
+    void deleteUser(int id);
 
 }
+

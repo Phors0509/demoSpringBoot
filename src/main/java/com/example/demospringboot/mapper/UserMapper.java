@@ -1,8 +1,8 @@
 package com.example.demospringboot.mapper;
 
 
-import com.example.demospringboot.dto.UserRequest;
-import com.example.demospringboot.dto.UserResponse;
+import com.example.demospringboot.dto.request.UserRequest;
+import com.example.demospringboot.dto.response.UserResponse;
 import com.example.demospringboot.model.User;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;

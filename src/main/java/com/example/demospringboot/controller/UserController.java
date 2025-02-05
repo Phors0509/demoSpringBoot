@@ -1,8 +1,9 @@
 package com.example.demospringboot.controller;
 
-import com.example.demospringboot.dto.UserRequest;
-import com.example.demospringboot.dto.UserResponse;
+import com.example.demospringboot.dto.request.UserRequest;
+import com.example.demospringboot.dto.response.UserResponse;
 import com.example.demospringboot.mapper.UserMapper;
+import com.example.demospringboot.model.User;
 import com.example.demospringboot.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,11 +37,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable int id) {
-        return getAllUsers().stream()
-                .filter(user -> user.getId() == id)
-                .findFirst()
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
+        User user = userService.getUserById(id);
+        return ResponseEntity.ok(userMapper.toUserResponse(user));
     }
 
     @PutMapping("/{id}")

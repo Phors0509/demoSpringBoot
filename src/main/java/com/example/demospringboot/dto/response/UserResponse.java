@@ -1,4 +1,4 @@
-package com.example.demospringboot.dto;
+package com.example.demospringboot.dto.response;
 
 import lombok.Data;
 
